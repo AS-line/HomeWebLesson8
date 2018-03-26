@@ -14,11 +14,11 @@ class HomeView(TemplateView):
 class ArticleListView(ListView):
     template_name = "list.html"
     model = Article
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
-        news_list = Article.objects.all()
         context = super().get_context_data(**kwargs)
-        context["all_news"] = news_list
+        context["all_news"] = Article.objects.all()
         context["pages"] = Tag.objects.all()
         return context
 
