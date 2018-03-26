@@ -7,6 +7,5 @@
 
 {% block title %}{{ new.title }}{% endblock %}
 
-{% block content %}
-    {{ new.content|safe }}
+{% block content %}<div id="text">{{ new.content|safe }}</div>
 {% endblock %}

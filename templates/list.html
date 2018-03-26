@@ -1,28 +1,44 @@
 {% extends "base.html" %}
 {% load static %}
-{% block head_tag %}<link rel="stylesheet" href="{% static 'css/list_style.css' %}">{% endblock %}
+{% block head_tag %}
+    <link rel="stylesheet" href="{% static 'css/list_style.css' %}">{% endblock %}
 
 {% block title %}Новости{% endblock %}
 
 {% block content %}
-{#-----------------------------------------------------------------------------------------------------#}
-<div class="container">
-    <div class="row">
+    {#-----------------------------------------------------------------------------------------------------#}
+    <div class="container">
+        <div class="row">
 
-        {% for new in all_news %}
-            <div class="col-md">
-                <div class="card" style="width: 18rem; height: 25rem">
-                    <img class="card-img-top" src="{{ new.get_img_url }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ new.title }}</h5>
-                        <p class="card-text">Дата: {{ new.date }}</p>
-                        <a href="{% url "detail" new.slug %}" class="btn btn-primary">Подробнее</a>
+            {% for new in all_news %}
+                <div class="col-md">
+                    <div class="card" style="width: 18rem; height: 25rem">
+                        <img class="card-img-top" src="{{ new.get_img_url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ new.title }}</h5>
+                            <p class="card-text">Дата: {{ new.date }}</p>
+                            <a href="{% url "detail" new.slug %}" class="btn btn-primary">Подробнее</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
 
+        </div>
     </div>
-</div>
-{#-----------------------------------------------------------------------------------------------------#}
+    {#-----------------------------------------------------------------------------------------------------#}
+    <div class="pagination">
+    <span class="step-links">
+        {% if all_news.has_previous %}
+            <a href="?page={{ all_news.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page .{{ all_news.number }}. of .{{ all_news.paginator.num_pages }}.
+        </span>
+
+        {% if all_news.has_next %}
+            <a href="?page={{ all_news.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+    </div>
 {% endblock %}
