@@ -23,7 +23,6 @@ class ArticleListView(ListView):
         return context
 
 
-
 class ArticleDetailView(DetailView):
     template_name = "detail.html"
     model = Article
