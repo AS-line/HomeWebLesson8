@@ -8,7 +8,7 @@
         <ul class="navbar-nav mr-auto">
             {% for page in pages %}
                 <li class="nav-item">
-                    <a class="nav-link" href="">{{ page.title }}<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="?is_search=true&tag_slug={{ page.title }}">{{ page.title }}<span class="sr-only">(current)</span></a>
                 </li>
             {% endfor %}
         </ul>
